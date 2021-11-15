@@ -44,16 +44,16 @@ export default function LessonPage({ source, toc }) {
   return (
     <>
       <Head>
-        <title>Guides | Cypress Documentation</title>
+        <title>Examples | Cypress Documentation</title>
         <meta name="description" content="" />
       </Head>
 
       <Layout
         toc={toc}
-        page={'guides'}
+        page={'examples'}
         source={source}
         components={components}
-        sidebarContent={sidebarJSON.guides[0]}
+        sidebarContent={sidebarJSON.examples[0]}
       />
     </>
   )
@@ -61,7 +61,7 @@ export default function LessonPage({ source, toc }) {
 
 export const getStaticProps = async ({ params }) => {
   const contentFilePath = path.join(
-    FILE_PATH('guides'),
+    FILE_PATH('examples'),
     `${params.slug[0]}/${params.slug[1]}.mdx`
   )
   const source = fs.readFileSync(contentFilePath)
@@ -87,7 +87,7 @@ export const getStaticProps = async ({ params }) => {
 }
 
 export const getStaticPaths = async () => {
-  const paths = allContentFilePaths('guides')
+  const paths = allContentFilePaths('examples')
     // Remove file extensions for page paths
     .map((path) => path.replace(/\.mdx?$/, ""))
     // Map the path into the static paths object required by Next.js

@@ -2,7 +2,7 @@ import TableOfContents from "./table-of-contents"
 import Sidebar from "./Sidebar"
 import { MDXRemote } from "next-mdx-remote"
 
-export default function Layout({ toc, source, components, sidebarContent }) {
+export default function Layout({ toc, page, source, components, sidebarContent }) {
   return (
     <>
       <div className="min-h-screen mt-20">
@@ -11,7 +11,7 @@ export default function Layout({ toc, source, components, sidebarContent }) {
             {/* Table of Content */}
             <div className="hidden lg:block lg:col-span-3 xl:col-span-2">
               <div className="sticky top-6">
-                <Sidebar sidebarContent={sidebarContent} />
+                <Sidebar page={page} sidebarContent={sidebarContent} />
               </div>
             </div>
 

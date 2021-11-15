@@ -3,15 +3,23 @@ import path from "path"
 import glob from "glob"
 import toc from "markdown-toc-unlazy"
 
-export const GUIDES_PATH = path.join(process.cwd(), "content/guides")
+const FILE_PATHS = {
+  api: "content/api",
+  examples: "content/examples",
+  faq: "content/faq",
+  guides: "content/guides",
+  plugins: "content/plugins"
+}
 
-export const contentFilePaths = fs
-  .readdirSync(GUIDES_PATH)
+export const FILE_PATH = (page: string) => path.join(process.cwd(), FILE_PATHS[page])
+
+export const contentFilePaths = (pagePath: string) => fs
+  .readdirSync(pagePath)
   // Only include md(x) files
   .filter((path) => /\.mdx?$/.test(path))
 
-export const allContentFilePaths = glob
-  .sync("content/guides/**/*")
+export const allContentFilePaths = (page: string) => glob
+  .sync(`${FILE_PATHS[page]}/**/*`)
   .filter((path) => /\.mdx?$/.test(path))
   .map((path) => path.replace(/^content/, ""))
 
